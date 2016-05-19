@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # easy-peasy-bot
 
 ## The story of a (Slack)bot
@@ -58,3 +59,7 @@ Once you’ve got your bot developed to your liking, it is ready to be deployed 
 # Using Botkit for Bot Apps
 
 You can find full instructions for building a bot app with this repository at https://medium.com/slack-developer-blog/easy-peasy-bots-getting-started-96b65e6049bf#.4ay2fjf32
+=======
+# ChatOps
+Work in progress
+>>>>>>> 4d828c5064baca25c8b8e1f664e9f46c3f41cbaa

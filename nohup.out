@@ -1,0 +1,35 @@
+nohup: start.sh: No such file or directory
+
+> easy-peasy-bot@1.0.0 start /Users/rashidgoshtasbi/Desktop/vagrant/easy-peasy-bot
+> node index.js
+
+** Using simple storage. Saving data to ./db_slack_bot_ci/
+** Setting up custom handlers for processing Slack messages
+** API CALL: https://slack.com/api/rtm.start
+** BOT ID:  jarvis  ...attempting to connect to RTM!
+** The RTM api just connected!
+
+> easy-peasy-bot@1.0.0 start /Users/rashidgoshtasbi/Desktop/vagrant/easy-peasy-bot
+> node index.js
+
+** Using simple storage. Saving data to ./db_slack_bot_ci/
+** Setting up custom handlers for processing Slack messages
+** API CALL: https://slack.com/api/rtm.start
+** BOT ID:  jarvis  ...attempting to connect to RTM!
+** The RTM api just connected!
+[Start]  0  Task for  U18UKELCT in D190QH2KZ
+>   [Start]  0  Conversation with  U18UKELCT in D190QH2KZ
+>   [End]  0  Conversation with  U18UKELCT in D190QH2KZ
+[End]  0  Task for  U18UKELCT in D190QH2KZ
+
+> easy-peasy-bot@1.0.0 start /Users/rashidgoshtasbi/Desktop/vagrant/easy-peasy-bot
+> node index.js
+
+** Using simple storage. Saving data to ./db_slack_bot_ci/
+** Setting up custom handlers for processing Slack messages
+** API CALL: https://slack.com/api/rtm.start
+** BOT ID:  jarvis  ...attempting to connect to RTM!
+** The RTM api just connected!
+[Start]  0  Task for  U18UKELCT in D190QH2KZ
+>   [Start]  0  Conversation with  U18UKELCT in D190QH2KZ
+./start.sh: line 1: 25800 Hangup: 1               TOKEN=xoxb-42975715683-iSkxX74ENsfHRAEybQeNR7dq npm start

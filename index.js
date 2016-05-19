@@ -94,15 +94,144 @@ controller.hears('hello', 'direct_message', function (bot, message) {
  * AN example of what could be:
  * Any un-handled direct mention gets a reaction and a pat response!
  */
-//controller.on('direct_message,mention,direct_mention', function (bot, message) {
-//    bot.api.reactions.add({
-//        timestamp: message.ts,
-//        channel: message.channel,
-//        name: 'robot_face',
-//    }, function (err) {
-//        if (err) {
-//            console.log(err)
-//        }
-//        bot.reply(message, 'I heard you loud and clear boss.');
-//    });
-//});
+//controller.on('hello,direct_message,mention,direct_mention', function (bot, message) {
+//     bot.api.reactions.add({
+//         timestamp: message.ts,
+//         channel: message.channel,
+//         name: 'robot_face',
+//     }, function (err) {
+//         if (err) {
+//             console.log(err)
+//         }
+//         bot.reply(message, 'Fuck off, I hear you...');
+//     });
+// });
+
+
+/*
+controller.hears('Jarvis status update', 'direct_message', function (bot, message) {
+    bot.reply(message, 'Sorry sir, virtual machine scripts have not been created yet.');
+});
+
+----------------------------------------------------------------------------------------------*/
+
+var os = require('os');
+
+controller.hears(['hello','hi'],'direct_message,direct_mention,mention',function(bot,message) {
+
+  bot.api.reactions.add({
+    timestamp: message.ts,
+    channel: message.channel,
+    name: 'computer'
+  },function(err,res) {
+    if (err) {
+      bot.botkit.log("Failed to add emoji reaction :(",err);
+    }
+  });
+
+
+  controller.storage.users.get(message.user,function(err,user) {
+    if (user && user.name) {
+      bot.reply(message,"Hello " + user.name+"!!");
+    } else {
+      bot.reply(message,"Hello.");
+    }
+  });
+})
+
+controller.hears(['Jarvis status update'],'direct_message,direct_mention,mention',function(bot,message) {
+   //var text;
+   var fs = require('fs')
+   var text
+   filename = "test.txt"
+   fs.readFile(filename, 'utf8', function(err, data) {
+      if (err) throw err;
+      console.log('OK: ' + filename);
+      console.log(data);
+      text = data.toString('utf8');
+      console.log(text);
+      bot.reply(message, "" + text);
+   });
+});
+
+controller.hears(['call me (.*)'],'direct_message,direct_mention,mention',function(bot,message) {
+  var matches = message.text.match(/call me (.*)/i);
+  var name = matches[1];
+  controller.storage.users.get(message.user,function(err,user) {
+    if (!user) {
+      user = {
+        id: message.user,
+      }
+    }
+    user.name = name;
+    controller.storage.users.save(user,function(err,id) {
+      bot.reply(message,"Got it. I will call you " + user.name + " from now on.");
+    })
+  })
+});
+
+controller.hears(['what is my name','who am i'],'direct_message,direct_mention,mention',function(bot,message) {
+
+  controller.storage.users.get(message.user,function(err,user) {
+    if (user && user.name) {
+      bot.reply(message,"You're " + user.name);
+    } else {
+      bot.reply(message,"I don't know yet!");
+    }
+  })
+});
+
+
+controller.hears('jarvis shutdown','direct_message,direct_mention,mention',function(bot,message) {
+
+  bot.startConversation(message,function(err,convo) {
+    convo.ask("Are you sure you want me to shutdown?",[
+      {
+        pattern: bot.utterances.yes,
+        callback: function(response,convo) {
+          convo.say("Bye!");
+          convo.next();
+          setTimeout(function() {
+            process.exit();
+          },3000);
+        }
+      },
+      {
+        pattern: bot.utterances.no,
+        default:true,
+        callback: function(response,convo) {
+          convo.say("*Phew!*");
+          convo.next();
+        }
+      }
+    ])
+  })
+})
+
+
+controller.hears(['uptime','identify yourself','who are you','what is your name'],'direct_message,direct_mention,mention',function(bot,message) {
+
+  var hostname = 'Master Rashid Computer'
+  var uptime = formatUptime(process.uptime());
+
+  bot.reply(message,':computer: I am a bot named <@' + bot.identity.name +'>. I have been running for ' + uptime + ' on ' + hostname + ".");
+
+})
+
+function formatUptime(uptime) {
+  var unit = 'second';
+  if (uptime > 60) {
+    uptime = uptime / 60;
+    unit = 'minute';
+  }
+  if (uptime > 60) {
+    uptime = uptime / 60;
+    unit = 'hour';
+  }
+  if (uptime != 1) {
+    unit = unit +'s';
+  }
+
+  uptime = uptime + ' ' + unit;
+  return uptime;
+}

@@ -1,0 +1,22 @@
+Virtual Machine 1
+
+
+
+Linux 3.13.0-86-generic (vagrant-ubuntu-trusty-64) 	05/19/2016 	_x86_64_	(1 CPU)
+
+avg-cpu:  %user   %nice %system %iowait  %steal   %idle
+           0.15    0.27    0.09    0.03    0.00   99.46
+
+Device:            tps    kB_read/s    kB_wrtn/s    kB_read    kB_wrtn
+sda               1.96        27.20        26.73     410529     403404
+
+Virtual Machine 2
+
+Linux 3.13.0-86-generic (vagrant-ubuntu-trusty-64) 	05/19/2016 	_x86_64_	(1 CPU)
+
+avg-cpu:  %user   %nice %system %iowait  %steal   %idle
+           0.16    0.30    0.09    0.03    0.00   99.42
+
+Device:            tps    kB_read/s    kB_wrtn/s    kB_read    kB_wrtn
+sda               2.19        30.48        29.95     410937     403860
+
